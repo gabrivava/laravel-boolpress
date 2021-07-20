@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*  rotte utenti guest */
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.welcome');
 });
+Route::resource('post', 'PostController')->only('index', 'show');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+/* admin rotte */
+/* Route::resource('posts', ); */
+Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
+    Route::get('/', 'HomeController@index')->name('dashboard');
+    Route::resource('posts', 'PostController');
+});
