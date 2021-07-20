@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('guest.welcome');
 });
-Route::resource('post', 'PostController')->only('index', 'show');
+Route::resource('posts', 'PostController')->only('index', 'show');
 
 Auth::routes();
 
