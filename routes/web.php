@@ -1,5 +1,6 @@
 <?php
 
+use App\Post;
 use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,8 @@ use Illuminate\Support\Facades\Auth;
 
 /*  rotte utenti guest */
 Route::get('/', function () {
-    return view('guest.welcome');
+    $posts = Post::all();
+    return view('guest.welcome', compact('posts'));
 });
 Route::resource('posts', 'PostController')->only('index', 'show');
 

@@ -1,5 +1,2 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
-@section('content')
-    <h1>Welcome Page</h1>
-@endsection
