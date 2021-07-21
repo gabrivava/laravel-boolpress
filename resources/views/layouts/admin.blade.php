@@ -72,9 +72,40 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="d-flex">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+              <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+                <span class="fs-4">Menu</span>
+              </a>
+              <hr>
+              <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                  <a href="{{route('admin.dashboard')}}" class="nav-link active" aria-current="page">
+                    <svg class="bi me-2" width="16" height="16"></svg>
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="{{route('admin.posts.index')}}" class="nav-link link-dark">
+                    <svg class="bi me-2" width="16" height="16"></svg>
+                    Posts
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link link-dark">
+                    <svg class="bi me-2" width="16" height="16"></svg>
+                    Guets
+                  </a>
+                </li>
+              </ul>
+              <hr>
+            </div>
+
+            <main class="py-4 container-fluid">
+                @yield('content')
+            </main>
+        </div>
     </div>
 </body>
 </html>

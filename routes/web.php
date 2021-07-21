@@ -26,7 +26,6 @@ Route::resource('posts', 'PostController')->only('index', 'show');
 Auth::routes();
 
 /* admin rotte */
-/* Route::resource('posts', ); */
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
     Route::get('/', 'HomeController@index')->name('dashboard');
     Route::resource('posts', 'PostController');
