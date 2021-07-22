@@ -26,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -37,7 +37,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required | max:255 | min:5',
+            'author' => 'required | max:255 | min: 5',
+            'paragraph' => 'required', // poteva essere nullable se impostato cosi in migration.
+            'image' => 'nullable | max:255 ',
+            'paragraph' => 'required',
+            'date' => 'required'
+        ]);
+        Post::create($validatedData);
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -48,7 +57,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
