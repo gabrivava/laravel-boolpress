@@ -25,8 +25,12 @@
                          |
                         <a class="btn btn-secondary" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
                          |
-                        <a class="btn btn-danger" href="{{ route('admin.posts.show', $post->id) }}">Delete</a>
-                          | </td>
+                         <form action="{{route('admin.posts.destroy', $post->id)}}" method="post">
+                             @csrf
+                             @method('delete')
+                             <button type="submit" class="btn btn-danger" href="{{ route('admin.posts.show', $post->id) }}">Delete</button>
+                         </form>
+                        </td>
 
                 </tr>
             @endforeach
