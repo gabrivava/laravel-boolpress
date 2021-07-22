@@ -68,7 +68,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -80,7 +80,16 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required | max:255 | min:5',
+            'author' => 'required | max:255 | min: 5',
+            'paragraph' => 'required', // poteva essere nullable se impostato cosi in migration.
+            'image' => 'nullable | max:255 ',
+            'paragraph' => 'required',
+            'date' => 'required'
+        ]);
+        $post->update($validatedData);
+        return redirect()->route('admin.posts.index');
     }
 
     /**
