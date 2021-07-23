@@ -3,8 +3,11 @@
 use App\Post;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
+use App\Mail\ContactFormMail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +27,37 @@ Route::get('/', function () {
 })->name('home');
 Route::resource('posts', 'PostController')->only('index', 'show');
 
+
+/* rotta contact */
+Route::get('/contact', function()
+{
+   return view('admin.contact');
+})->name('contact');
+Route::post('contact', function(Request $request)
+{
+    # validazione dati
+    $validateData = $request->validate([
+        'full_name' => 'required | min: 3 | max: 100',
+        'email' => 'required | email',
+        'message' => 'required | min: 3'
+    ]);
+
+    # visualizzazione mail anteprima
+    // return (new ContactFormMail($validateData))->render();
+
+    # invio della mail
+    Mail::to('franco@example.it')
+    ->send(new ContactFormMail($validateData));
+    return redirect()
+    ->back()
+    ->with('message','email inviata con successo');
+
+
+})->name('contact.send');
+
+
 Auth::routes();
+
 
 /* admin rotte */
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {

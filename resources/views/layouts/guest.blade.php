@@ -91,6 +91,7 @@
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
       <a class="p-2 link-secondary" href="{{route('home')}}">Home</a>
+      <a class="p-2 link-secondary" href="{{route('contact')}}">Contact Me</a>
       <a class="p-2 link-secondary" href="{{route('posts.index')}}">Posts</a>
     </nav>
   </div>
