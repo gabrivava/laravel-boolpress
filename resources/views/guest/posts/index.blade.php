@@ -22,7 +22,7 @@
                   <a href="#" class="stretched-link">Continue reading</a>
                   </div>
                   <div class="col-auto d-none d-lg-block">
-                    <img src="{{$post->image}}" alt="">
+                    <img src="{{asset('storage/' . $post->image)}}" alt="">
                   
   
                   </div>

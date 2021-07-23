@@ -17,7 +17,7 @@
             @foreach ($posts as $post)
                 <tr>
                     <td>{{$post->id}}</td>
-                    <td><img width="150" src="{{$post->image}}" alt=""></td>
+                    <td><img width="150" src="{{asset('storage/' . $post->image)}}" alt=""></td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->author}}</td>
                     <td class="d-flex flex-column align-items-start justify-content-around">
