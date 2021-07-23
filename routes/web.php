@@ -28,8 +28,8 @@ Route::get('/', function () {
 Route::resource('posts', 'PostController')->only('index', 'show');
 
 
-/* rotta contact */
-Route::get('/contact', function()
+/* 1^ OPZIONE rotta contact */
+/* Route::get('/contact', function()
 {
    return view('admin.contact');
 })->name('contact');
@@ -53,8 +53,13 @@ Route::post('contact', function(Request $request)
     ->with('message','email inviata con successo');
 
 
-})->name('contact.send');
+})->name('contact.send'); */
+/* / */
 
+/* 2^ OPZIONE */
+Route::get('contact', 'ContactController@form')->name('contact');
+Route::post('contact', 'ContactController@send')->name('contact.send');
+/* / */
 
 Auth::routes();
 
