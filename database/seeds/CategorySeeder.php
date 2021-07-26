@@ -2,6 +2,7 @@
 
 use App\Category;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
@@ -23,7 +24,7 @@ class CategorySeeder extends Seeder
         foreach ($categories as $category) {
             $singolaCategory = new Category();
             $singolaCategory->name = $category;
-            $singolaCategory->slug = Str::slug($category);
+            $singolaCategory->slug = Str::slug($singolaCategory->name);
             $singolaCategory->save();
         }
     }
