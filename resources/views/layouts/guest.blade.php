@@ -72,6 +72,9 @@
                     <a class="dropdown-item" href="{{route('admin.dashboard')}}">
                       Dashboard
                     </a>
+                    <a class="dropdown-item" href="{{route('posts.index')}}">
+                      Vista Utente
+                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">

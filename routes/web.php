@@ -59,7 +59,7 @@ Route::post('contact', function(Request $request)
 /* 2^ OPZIONE */
 Route::get('contact', 'ContactController@form')->name('contact');
 Route::post('contact', 'ContactController@send')->name('contact.send');
-/* / */
+
 
 Auth::routes();
 
@@ -70,3 +70,5 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('posts', 'PostController');
     Route::resource('users', 'UserController');
 });
+
+/* categories table */
