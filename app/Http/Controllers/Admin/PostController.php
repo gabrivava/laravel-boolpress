@@ -45,7 +45,7 @@ class PostController extends Controller
             'title' => 'required | max:255 | min:5',
             'author' => 'required | max:255 | min: 5',
             'paragraph' => 'required', 
-            'category_id' => 'nullable | exists:categories, id', // verifica che la colonna id all'interno della tabella categories cheeffettivamente esiste
+            'category_id' => 'nullable | exists:categories,id', // verifica che la colonna id all'interno della tabella categories cheeffettivamente esiste
             'image' => 'nullable | max: 500 ',
             'paragraph' => 'required',
             'date' => 'required'
@@ -54,6 +54,7 @@ class PostController extends Controller
         $image = Storage::disk('public')->put('posts_img', $request->image);
         $validatedData['image'] = $image;
 
+        
         // dd($validatedData);
         $post = Post::create($validatedData);
         return redirect()->route('admin.posts.show', compact('post'));
@@ -67,7 +68,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('admin.posts.show', compact('post'));
+        $categories = Category::all();
+        // dd($categories[$post->category_id]);
+        return view('admin.posts.show', compact('post', 'categories'));
     }
 
     /**

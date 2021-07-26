@@ -13,10 +13,10 @@ class PostSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 1; $i++) { 
             $newPost = new Post;
             $newPost->title = $faker->word();
-            $newPost->image = $faker->imageUrl(640, 480, 'Post', true, $newPost->title);
+            $newPost->image = $faker->image('public/storage/images', 360, 360);
             $newPost->paragraph = $faker->paragraph(5, true);
             $newPost->author = $faker->name();
             $newPost->date = $faker->date('Y-m-d','now');
