@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'author', 'image', 'paragraph', 'date'];
+    protected $fillable = ['title', 'author', 'image', 'paragraph', 'date', 'category_id'];
 
     /**
      * Get the Category that owns the Post
