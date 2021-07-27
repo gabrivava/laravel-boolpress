@@ -46,16 +46,15 @@ class PostController extends Controller
             'author' => 'required | max:255 | min: 5',
             'paragraph' => 'required', 
             'category_id' => 'nullable | exists:categories,id', // verifica che la colonna id all'interno della tabella categories cheeffettivamente esiste
-            'image' => 'nullable | max: 500 ',
+            'image' => 'nullable | mimes:jpeg,png,jpg,gif,svg | max: 500 ',
             'paragraph' => 'required',
             'date' => 'required'
         ]);
-
-        $image = Storage::disk('public')->put('posts_img', $request->image);
+        $image = Storage::disk('images')->put('posts_img', $request->image);
         $validatedData['image'] = $image;
 
         
-        // dd($validatedData);
+        // dd($image);
         $post = Post::create($validatedData);
         return redirect()->route('admin.posts.show', compact('post'));
     }
@@ -98,7 +97,8 @@ class PostController extends Controller
             'title' => 'required | max:255 | min:5',
             'author' => 'required | max:255 | min: 5',
             'paragraph' => 'required', // poteva essere nullable se impostato cosi in migration.
-            'image' => 'nullable | max:255 ',
+            'category_id' => 'nullable | exists:categories,id',
+            'image' => 'nullable | mimes:jpeg,png,jpg,gif,svg | max:255 ',
             'paragraph' => 'required',
             'date' => 'required'
         ]);
