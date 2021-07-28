@@ -8,6 +8,7 @@
             <tr>
                 <th>ID</th>
                 <th>IMAGE</th>
+                <th>CATEGORY</th>
                 <th>TITLE</th>
                 <th>AUTHOR</th>
                 <th>ACTIONS</th>
@@ -18,6 +19,7 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td><img width="150" src="{{ asset('storage/images/' . $post->image)}}" alt=""></td>
+                    <td>{{$post->category_id ? $categories[$post->category_id - 1]->name : 'uncategorize'}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->author}}</td>
                     <td class="d-flex flex-column align-items-start justify-content-around">
