@@ -49,7 +49,7 @@ class PostController extends Controller
             'author' => 'required | max:255 | min: 5',
             'paragraph' => 'required', 
             'category_id' => 'nullable | exists:categories,id', // verifica che la colonna id all'interno della tabella categories cheeffettivamente esiste
-            'tags' => 'nullable | exist:tags,id',
+            'tags' => 'nullable | exists:tags,id',
             'image' => 'nullable | mimes:jpeg,png,jpg,gif,svg | max: 500 ',
             'paragraph' => 'required',
             'date' => 'required'
@@ -86,7 +86,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -102,12 +103,14 @@ class PostController extends Controller
             'title' => 'required | max:255 | min:5',
             'author' => 'required | max:255 | min: 5',
             'paragraph' => 'required', // poteva essere nullable se impostato cosi in migration.
+            'tags' => 'nullable | exists:tags,id',
             'category_id' => 'nullable | exists:categories,id',
             'image' => 'nullable | mimes:jpeg,png,jpg,gif,svg | max:255 ',
             'paragraph' => 'required',
             'date' => 'required'
         ]);
         $post->update($validatedData);
+        $post->tags()->sync($request->tags);
         return redirect()->route('admin.posts.index');
     }
 
