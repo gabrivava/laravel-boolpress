@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,7 +31,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -47,6 +49,7 @@ class PostController extends Controller
             'author' => 'required | max:255 | min: 5',
             'paragraph' => 'required', 
             'category_id' => 'nullable | exists:categories,id', // verifica che la colonna id all'interno della tabella categories cheeffettivamente esiste
+            'tags' => 'nullable | exist:tags,id',
             'image' => 'nullable | mimes:jpeg,png,jpg,gif,svg | max: 500 ',
             'paragraph' => 'required',
             'date' => 'required'
@@ -57,6 +60,7 @@ class PostController extends Controller
         
         // dd($image);
         $post = Post::create($validatedData);
+        $post->tags()->attach($request->tags);
         return redirect()->route('admin.posts.show', compact('post'));
     }
 

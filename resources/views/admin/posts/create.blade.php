@@ -57,6 +57,18 @@
               @endforeach
             </select>
           </div>
+
+          <div class="form-group">
+            <label for="tags">tags</label>
+            <select multiple class="form-control" name="tags[]" id="tags">
+              <option value="">Select a tag</option>
+              @if ($tags)
+                @foreach ($tags as $tag)
+                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                @endforeach
+              @endif
+            </select>
+          </div>
           
           <button type="submit" class="btn btn-primary">Submit</button>
           </form>
