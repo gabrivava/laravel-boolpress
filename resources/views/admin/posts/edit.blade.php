@@ -46,13 +46,13 @@
           
           @error('image')
               <div class="alert alert-danger">{{$message}}</div>
-          @enderror
+          @enderror  
           <div class="form-group">
             <label for="image">Cover Image</label>
-            <img src="{{$post->image}}" alt="">
-            <input type="text" class="form-control" name="image" id="image" aria-describedby="imageHelperr" placeholder="Add an image" value="{{$post->image}}">
-            <small id="imageHelperr" class="form-text text-muted">Type a image url for the post, max 255 characters</small>
-          </div>  
+            <img src="{{asset('storage/images/' . $post->image)}}" alt="">
+            <input type="file" class="form-control-file" name="image" id="image" aria-describedby="imageImgHelper" placeholder="Add an image">
+            <small id="imageImgHelper" class="form-text text-muted">select an image</small>
+          </div>
           
           @error('paragraph')
               <div class="alert alert-danger">{{$message}}</div>
