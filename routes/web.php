@@ -63,6 +63,9 @@ Route::post('contact', 'ContactController@send')->name('contact.send');
 
 Auth::routes();
 
+Route::get('vue-posts', function() {
+    return view('posts');
+});
 
 /* admin rotte */
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
