@@ -1967,7 +1967,7 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
     console.log('ComponentCard ok');
     Axios.get('/api/posts').then(function (resp) {
-      console.log(resp);
+      // console.log(resp);
       _this.posts = resp.data.data;
     })["catch"](function (e) {
       console.error('Sorry!!! ' + e);
@@ -37687,7 +37687,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container", attrs: { id: "app" } },
+    { staticClass: "container" },
     _vm._l(_vm.posts, function(post) {
       return _c("div", { staticClass: "card" }, [
         _c("img", {
@@ -49961,19 +49961,8 @@ Vue.component('post-component', __webpack_require__(/*! ./components/PostCompone
 
 var app = new Vue({
   el: '#app',
-  data: {
-    posts: null
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    Axios.get('/api/posts').then(function (resp) {
-      console.log(resp);
-      _this.posts = resp.data.data;
-    })["catch"](function (e) {
-      console.error('Sorry!!! ' + e);
-    });
-  }
+  data: {},
+  mounted: function mounted() {}
 });
 
 /***/ }),

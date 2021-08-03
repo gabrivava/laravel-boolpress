@@ -33,14 +33,9 @@ Vue.component('post-component', require('./components/PostComponent.vue').defaul
 const app = new Vue({
     el: '#app',
     data: {
-        posts: null
+        
     },
     mounted(){
-        Axios.get('/api/posts').then(resp => {
-            console.log(resp);
-            this.posts = resp.data.data;
-        }).catch( e => {
-            console.error('Sorry!!! ' + e);
-        })
+        
     }
 });

@@ -1,6 +1,6 @@
 <template>
-    <div class="container" id="app">
-        <div class="card" v-for="post in posts">
+    <div class="container">
+        <div v-for="post in posts" class="card">
             <img width="100" class="card-img-top" :src="post.image" alt="">
             <div class="card-body">
                 <h4 class="card-title">{{post.title}}</h4>
@@ -22,7 +22,7 @@ const { default: Axios } = require('axios');
             console.log('ComponentCard ok');
 
             Axios.get('/api/posts').then(resp => {
-                console.log(resp);
+                // console.log(resp);
                 this.posts = resp.data.data;
             }).catch( e => {
                 console.error('Sorry!!! ' + e);
