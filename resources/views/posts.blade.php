@@ -5,6 +5,8 @@
 
     <div class="container d-flex flex-wrap">
 
+        <categories-list></categories-list>
+
         <post-component></post-component>
 
     </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Http\Request;
@@ -50,4 +51,9 @@ Route::get('posts', 'API\PostController@index');
 
 Route::get('posts/{post}', function(Post $post) {
     return new PostResource($post);
+});
+
+Route::get('categories', function()
+{
+    return Category::all();
 });
