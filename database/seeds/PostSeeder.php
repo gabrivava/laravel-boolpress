@@ -15,8 +15,8 @@ class PostSeeder extends Seeder
     {
         for ($i=0; $i < 10; $i++) { 
             $newPost = new Post;
-            $newPost->title = $faker->word();
-            $newPost->image = $faker->imageUrl(360, 360, 'post', true);
+            $newPost->title = $faker->sentence(6, true);
+            $newPost->image = $faker->imageUrl(200, 200);
             $newPost->paragraph = $faker->paragraph(5, true);
             $newPost->author = $faker->name();
             $newPost->date = $faker->date('Y-m-d','now');
